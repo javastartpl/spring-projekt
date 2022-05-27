@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pl"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Dodaj nowy film</title>
+</head>
+<body>
+<main class="main-content" layout:fragment="content">
+    <h2 class="list-heading">Dodaj nowy film</h2>
+    <form action="#" th:action="@{/admin/dodaj-film}" method="post" enctype="multipart/form-data" class="mc-form" th:object="${movie}">
+        <label for="title">Tytuł</label>
+        <input type="text" id="title" placeholder="Przykładowy tytuł" th:field="*{title}">
+        <label for="originalTitle">Tytuł oryginalny</label>
+        <input type="text" id="originalTitle" placeholder="Example title" th:field="*{originalTitle}">
+        <label for="releaseYear">Rok premiery</label>
+        <input type="number" id="releaseYear" placeholder="2019" th:field="*{releaseYear}">
+        <label for="genre">Gatunek</label>
+        <select id="genre" th:field="*{genre}" required>
+            <option value="" hidden>Wybierz gatunek</option>
+            <option th:each="genre: ${genres}" th:value="${genre.name}" th:text="${genre.name}"></option>
+        </select>
+        <label for="promoted">Promowanie na stronie głównej?</label>
+        <input id="promoted" type="checkbox" th:field="*{promoted}">
+        <label for="poster">Plakat</label>
+        <input type="file" id="poster" th:field="*{poster}" accept="image/png, image/jpeg">
+        <label for="trailerId">Identyfikator trailera Youtube</label>
+        <input type="text" id="trailerId" placeholder="abcdefgh" th:field="*{youtubeTrailerId}">
+        <label for="shortDescription">Krótki opis - max 200 znaków</label>
+        <textarea id="shortDescription" rows="5" th:field="*{shortDescription}"></textarea>
+        <label for="description">Pełny opis</label>
+        <textarea id="description" rows="10" th:field="*{description}"></textarea>
+        <button type="submit">Dodaj</button>
+    </form>
+</main>
+</body>
+</html>

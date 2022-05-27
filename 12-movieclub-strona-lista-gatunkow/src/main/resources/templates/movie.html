@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pl"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <!-- Ustawiamy tytuł -->
+    <title th:text="|${movie.title} - MovieClub|">Tytuł filmu - MovieClub</title>
+</head>
+<body>
+<div class="container">
+    <main class="main-content" layout:fragment="content">
+        <section class="movie">
+            <!-- Podsumowanie -->
+            <div class="movie-summary">
+                <!-- Ustawiamy adres i opis plakatu -->
+                <img src="../static/img/poster-placeholder.png"
+                     th:src="@{/img/poster-placeholder.png}"
+                     alt="tytuł filmu"
+                     th:alt="${movie.title}"
+                     class="movie-summary-cover"
+                />
+                <!-- informacje o filmie -->
+                <div class="movie-summary-info">
+                    <!-- Ustawiamy tytuły, krótki opis, rok -->
+                    <h1 class="movie-summary-title" th:text="${movie.title}">Władca pierścieni</h1>
+                    <p class="movie-summary-original-title" th:text="${movie.originalTitle}">Lord of the rings</p>
+                    <p class="movie-summary-item" th:text="|Rok: ${movie.releaseYear}|">Rok: 2001</p>
+                    <!-- Ustawiamy link do strony gatunku filmowego, np. /gatunek/fantasy -->
+                    <p class="movie-summary-item">Gatunek: <a href="#"
+                                                              th:href="@{|/gatunek/${movie.genre}|}"
+                                                              th:text="${movie.genre}">Fantasy</a>
+                    </p>
+                    <p class="movie-summary-item" th:text="${movie.shortDescription}">
+                        Podróż odważnego hobbita i jego towarzyszy w poszukiwaniu pierścienia.
+                    </p>
+                </div>
+            </div>
+            <!-- Ocena -->
+            <div class="movie-rating-container movie-section">
+                <h2 class="movie-section-heading">Ocena</h2>
+                <div>
+                    <p class="movie-rating-value" th:text="${avgRating}">4.0</p>
+                    <p>Liczba ocen: 134</p>
+                </div>
+                <form action="#" class="movie-rating-form">
+                    <!-- Identyfikator filmu, na który głosujemy-->
+                    <p>Twoja ocena</p>
+                    <input type="hidden" name="movieId">
+                    <div class="movie-rating-buttons">
+                        <button class="movie-rating-button"><i class="fa-solid fa-star"></i></button>
+                        <button class="movie-rating-button"><i class="fa-solid fa-star"></i></button>
+                        <button class="movie-rating-button"><i class="fa-solid fa-star"></i></button>
+                        <button class="movie-rating-button"><i class="fa-solid fa-star"></i></button>
+                        <button class="movie-rating-button"><i class="fa-regular fa-star"></i></button>
+                    </div>
+                </form>
+                <p><a href="#">Zaloguj się</a>, aby oddać głos</p>
+            </div>
+        </section>
+        <!-- trailer -->
+        <section class="movie-trailer-container movie-section">
+            <h2 class="movie-section-heading">Trailer</h2>
+            <!-- Ustawiamy url filmu z trailerem -->
+            <iframe width="560" height="315" class="movie-trailer"
+                    src="https://www.youtube.com/embed/V75dMMIW2B4"
+                    th:src="|https://www.youtube.com/embed/${movie.youtubeTrailerId}|"
+                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </section>
+        <!-- opis -->
+        <section class="movie-section">
+            <h2 class="movie-section-heading">Opis</h2>
+            <!-- Ustawiamy pełny opis -->
+            <p th:text="${movie.description}">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
+                Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.
+                Donec lacinia congue felis in faucibus.</p>
+        </section>
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  liquibase:
+    contexts: dev
+    change-log: classpath:db/changelog/master.xml

@@ -1,0 +1,256 @@
+/*CSS reset*/
+* {
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+/*Zmiana domyślnego fontu*/
+body {
+    font-family: 'Roboto', sans-serif;
+}
+/*Ustawienie koloru odnośników i usunięcie podkreśleń*/
+a {
+    text-decoration: none;
+    color: #ffc107;
+}
+/*Kolor tła w głównym kontenerze i ustawienie elastycznego rozkładu
+Elementy będą ustawiane jeden pod drugim
+*/
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #424242;
+}
+/*Główna sekcja powinna być skalowana wraz z rozciąganiem okna przeglądarki
+i powinna zajmować większość dostępnej przestrzeni
+*/
+.main-content {
+    flex: 1;
+}
+
+/*MENU START*/
+/*Kolor logotypu i przycisku rozwijającego menu*/
+.logo,
+#toggle-icon {
+    color: #ffc107;
+}
+/*Ustawienia dla responsywnego menu*/
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+/*Elementy menu domyślnie są ukryte*/
+.menu-item {
+    width: 100%;
+    padding: 16px;
+    border-bottom: 1px #6d6d6d solid;
+    text-align: center;
+    display: none;
+}
+/*Po wciśnięciu przycisku elementy będą widoczne*/
+.expanded > .menu-item {
+    display: block;
+}
+/*padding dla elementów menu*/
+.menu-logo-container,
+.menu-toggle {
+    display: block;
+    padding: 16px 32px;
+    font-size: 20px;
+}
+/*MENU END*/
+
+/*FOOTER START*/
+/*Wyśrodkowanie stopki*/
+.footer {
+    padding: 8px;
+    text-align: center;
+}
+/*FOOTER END*/
+
+/*Jumbotron START*/
+.jumbotron {
+    background-image: url("../img/jumbotron.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 2rem;
+    text-align: center;
+}
+.jumbotron-header {
+    font-size: 3rem;
+    margin: 1rem 0;
+}
+.jumbotron-description {
+    font-size: 1.2rem;
+}
+/*Jumbotron END*/
+
+/*Listing START*/
+/*Nagłówek*/
+.list-heading,
+.list-description {
+    text-align: center;
+    margin: 16px 0;
+}
+/*Usunięcie dekoracji elementów listy (kropki na początku)*/
+.movie-list {
+    list-style-type: none;
+}
+/*Margines i ramka wokół pojedynczego filmu*/
+.movie-list-item {
+    margin-bottom: 16px;
+    display: flex;
+    border: 1px #6d6d6d solid;
+}
+/*Plakat - usuniecie paddingu*/
+.movie-list-item-poster {
+    display: block;
+    max-width: 200px;
+}
+/*Karta filmu*/
+.movie-list-item-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 16px;
+}
+.movie-list-item-content > * {
+    margin: 8px 0;
+}
+.movie-list-item-title {
+    font-size: 1.6rem;
+}
+.movie-list-item-rating {
+    font-size: 1.6rem;
+}
+/*Listing END*/
+
+/*Movie.html*/
+/*Informacje o filmie w jednym rzędzie z odstępem od jumbotrona*/
+.movie-summary {
+    display: flex;
+    margin-top: 16px;
+}
+/*Mniejsza okładka na małych ekranach*/
+.movie-summary-cover {
+    object-fit: contain;
+    max-width: 200px;
+}
+/*Odstęp informacji o filmie od okładki*/
+.movie-summary-info {
+    margin-left: 16px;
+}
+/*Oryginalny tytuł w kolorze szarym i odstęp pod nim*/
+.movie-summary-original-title {
+    color: #9e9e9e;
+    margin-bottom: 16px;
+}
+/*Odstępy między poszczególnymi informacjami*/
+.movie-summary-item {
+    margin: 8px 0;
+}
+/*Większy tytuł filmu*/
+.movie-summary-title {
+    font-size: 2rem;
+}
+/*Wyśrodkowanie głosowania*/
+.movie-rating-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 200px;
+}
+
+/*Wyśrodkowanie tekstu Twoja ocena*/
+.movie-rating-form > p {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+/*Powiększenie i wyśrodkowanie średniej oceny*/
+.movie-rating-value {
+    font-size: 4rem;
+    text-align: center;
+}
+/*Styl dla przycisków z ocenami*/
+.movie-rating-button {
+    background-color: #ffc107;
+    border: 0;
+    padding: 4px;
+    font-size: 1.6rem;
+    border-radius: 4px;
+    opacity: 0.8;
+}
+/*Usunięcie przezroczystości po najechaniu na przycisk*/
+.movie-rating-button:hover {
+    opacity: 1;
+}
+/*Odstępy między elementami w ramce z głosowaniem*/
+.movie-rating-container > * {
+    margin: 8px 0;
+}
+/*Ramka dla boxu z głosowaniem*/
+.movie-section {
+    margin-top: 16px;
+    padding: 16px;
+    border: 1px #6d6d6d solid;
+}
+/*Odstęp pod nagłówkami sekcji*/
+.movie-section-heading {
+    margin-bottom: 8px;
+}
+/*Wyśrodkowanie trailera*/
+.movie-trailer {
+    display: block;
+    margin: auto;
+}
+/*Movie.html END*/
+
+/*Responsive*/
+@media only screen and (min-width: 992px) {
+    /*Na ekranie powyżej 992px ukrywamy przycisk do rozwijania menu*/
+    .menu-toggle {
+        display: none;
+    }
+
+    /*Elementy menu nie powinny już zajmować całej szerokości, tylko być obok siebie*/
+    .menu-item {
+        display: block;
+        width: auto;
+        border-bottom: 0;
+    }
+
+    /*Kontener z logo powinien być rozciągnięty, a nawigacja po prawej stronie*/
+    .menu-logo-container {
+        flex: 1;
+    }
+
+    /*Na dużym ekranie ograniczamy szerokość do 960px*/
+    .main-content,
+    .menu {
+        align-self: center;
+        width: 960px;
+    }
+}
+
+/*Responsive movie.html*/
+@media only screen and (min-width: 992px) {
+    /*Dodajemy rozkład elastyczny, elementy będą wyświetlane w jednym wierszu*/
+    .movie {
+        display: flex;
+        justify-content: space-between;
+    }
+    /*Przyciski powinny wyświetlać się obok siebie, bez zawijania wiersza*/
+    .movie-rating-buttons {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+    /*Większe odstępy między przyciskami*/
+    .movie-rating-button {
+        font-size: 1.2rem;
+        margin: 0 4px;
+    }
+}

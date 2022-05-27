@@ -1,0 +1,12 @@
+.metadata/
+.recommenders/
+**/target/
+**/.settings/
+**/.project
+**/.classpath
+**/.tern-project
+**/bin/
+Servers/
+*.iml
+**/.idea
+.DS_Store
