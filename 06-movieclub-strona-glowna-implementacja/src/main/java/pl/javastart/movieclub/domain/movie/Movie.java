@@ -1,7 +1,7 @@
 package pl.javastart.movieclub.domain.movie;
 
 import pl.javastart.movieclub.domain.genre.Genre;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class Movie {
