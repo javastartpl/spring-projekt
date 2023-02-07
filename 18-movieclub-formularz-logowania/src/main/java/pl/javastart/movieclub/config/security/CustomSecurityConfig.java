@@ -7,14 +7,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-class CustomSecurityConfig {
+public class CustomSecurityConfig {
     private static final String USER_ROLE = "USER";
     private static final String EDITOR_ROLE = "EDITOR";
     private static final String ADMIN_ROLE = "ADMIN";
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests((authz) -> authz
-                        .mvcMatchers("/admin/**").hasAnyRole(EDITOR_ROLE, ADMIN_ROLE)
+                        .requestMatchers("/admin/**").hasAnyRole(EDITOR_ROLE, ADMIN_ROLE)
                         .anyRequest().permitAll()
                 )
                 .formLogin(login -> login
@@ -26,7 +26,7 @@ class CustomSecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return web -> web.ignoring().mvcMatchers(
+        return web -> web.ignoring().requestMatchers(
                 "/img/**",
                 "/scripts/**",
                 "/styles/**"
