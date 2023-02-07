@@ -57,4 +57,16 @@ class GenreControllerTest {
         mockMvc.perform(get("/gatunek/horror"))
                 .andExpect(status().isNotFound());
     }
+
+    @Test
+    void shouldFindThreeGenres() throws Exception {
+        GenreDto genre1 = new GenreDto(1L, "Horror", "Straszne filmy");
+        GenreDto genre2 = new GenreDto(2L, "Komedia", "Śmieszne filmy");
+        List<GenreDto> genres = List.of(genre1, genre2);
+        when(genreService.findAllGenres()).thenReturn(genres);
+        mockMvc.perform(get("/gatunki-filmowe"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("genre-listing"))
+                .andExpect(model().attribute("genres", genres));
+    }
 }
