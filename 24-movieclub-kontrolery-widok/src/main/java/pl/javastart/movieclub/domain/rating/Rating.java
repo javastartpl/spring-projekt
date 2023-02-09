@@ -2,7 +2,7 @@ package pl.javastart.movieclub.domain.rating;
 
 import pl.javastart.movieclub.domain.movie.Movie;
 import pl.javastart.movieclub.domain.user.User;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "movie_rating")
