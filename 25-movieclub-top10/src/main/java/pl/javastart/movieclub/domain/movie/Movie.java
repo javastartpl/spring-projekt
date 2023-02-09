@@ -3,7 +3,7 @@ package pl.javastart.movieclub.domain.movie;
 import pl.javastart.movieclub.domain.genre.Genre;
 import pl.javastart.movieclub.domain.rating.Rating;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
