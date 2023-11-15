@@ -1,11 +1,12 @@
 package pl.javastart.movieclub.storage;
 
 import org.apache.commons.io.FilenameUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.nio.file.Files;
@@ -15,21 +16,30 @@ import java.nio.file.StandardCopyOption;
 
 @Service
 public class FileStorageService {
+    private final Logger logger = LoggerFactory.getLogger(FileStorageService.class);
     private final String fileStorageLocation;
     private final String imageStorageLocation;
 
-    public FileStorageService(@Value("${app.storage.location}") String storageLocation) throws FileNotFoundException {
+    public FileStorageService(@Value("${app.storage.location}") String storageLocation) {
         this.fileStorageLocation = storageLocation + "/files/";
         this.imageStorageLocation = storageLocation + "/img/";
         Path fileStoragePath = Path.of(this.fileStorageLocation);
-        checkDirectoryExists(fileStoragePath);
         Path imageStoragePath = Path.of(this.imageStorageLocation);
-        checkDirectoryExists(imageStoragePath);
+        prepareStorageDirectories(fileStoragePath, imageStoragePath);
     }
 
-    private void checkDirectoryExists(Path path) throws FileNotFoundException {
-        if (Files.notExists(path)) {
-            throw new FileNotFoundException("Directory %s does not exist.".formatted(path.toString()));
+    private void prepareStorageDirectories(Path fileStoragePath, Path imageStoragePath) {
+        try {
+            if (Files.notExists(fileStoragePath)) {
+                Files.createDirectories(fileStoragePath);
+                logger.info("File storage directory created %s".formatted(fileStoragePath.toAbsolutePath().toString()));
+            }
+            if (Files.notExists(imageStoragePath)) {
+                Files.createDirectories(imageStoragePath);
+                logger.info("Image storage directory created %s".formatted(fileStoragePath.toAbsolutePath().toString()));
+            }
+        } catch (IOException e) {
+            throw new UncheckedIOException("Creation of storage directories failed", e);
         }
     }
 
